@@ -20,13 +20,10 @@ public class StringUtil {
 		
 		String[] numsAsString = input.split(delimiter);
 		
-		
 		String negativeNumbers = Arrays
-        	.stream(numsAsString)
-        	.mapToInt(Integer::parseInt)
-        	.filter(num -> num < 0)
-        	.mapToObj(String::valueOf)
-            .collect(Collectors.joining(","));
+	        	.stream(numsAsString)
+	        	.filter(num -> Integer.parseInt(num)< 0)  	
+	            .collect(Collectors.joining(","));
 		
 		if(!negativeNumbers.isEmpty())
 			throw new RuntimeException("negative numbers not allowed " + negativeNumbers);
