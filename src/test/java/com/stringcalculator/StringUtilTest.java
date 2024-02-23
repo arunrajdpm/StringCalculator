@@ -70,6 +70,11 @@ public class StringUtilTest {
         );
     }
     
+    
+    @Test
+    void validate_newLineDelimiter () {
+    	Assertions.assertEquals(6, StringUtil.stringCalculator("1\n2,3"));
+    }
    
     
     
