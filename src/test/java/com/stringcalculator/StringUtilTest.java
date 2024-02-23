@@ -1,5 +1,8 @@
 package com.stringcalculator;
  
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -45,5 +48,16 @@ public class StringUtilTest {
         );
     }
     
+   
+    @Test
+    public void throwExceptionOnNegativeNum() {
+    	RuntimeException thrown = assertThrows(
+    			RuntimeException.class,
+    	           () -> StringUtil.stringCalculator("-1"),
+    	           "negative numbers not allowed -1"
+    	    );
+
+    	assertTrue(thrown.getMessage().contains("negative numbers not allowed -1"));
+    }
     
 }
