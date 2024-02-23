@@ -10,8 +10,9 @@ public class StringUtil {
 		if(input.isEmpty())
 			return 0;
 		
+		 String delimiter = ",|\n";
 		
-		String[] numsAsString = input.split(",");
+		String[] numsAsString = input.split(delimiter);
 		
 		
 		String negativeNumbers = Arrays

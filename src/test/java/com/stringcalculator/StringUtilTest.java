@@ -69,13 +69,21 @@ public class StringUtilTest {
                
         );
     }
-    
-    
-    @Test
-    void validate_newLineDelimiter () {
-    	Assertions.assertEquals(6, StringUtil.stringCalculator("1\n2,3"));
-    }
    
+    
+    @ParameterizedTest
+    @MethodSource("validateNewLineDelimiterStrings")
+    void validate_NewLineDelimiterString(String input, Integer output) {
+        Assertions.assertEquals(output, StringUtil.stringCalculator(input));
+    }
+
+    static Stream<Arguments> validateNewLineDelimiterStrings() {
+        return Stream.of(
+                Arguments.of("1\n2,3", 6),
+                Arguments.of("1\n2\n3", 6)
+        );
+    }
+    
     
     
 }
