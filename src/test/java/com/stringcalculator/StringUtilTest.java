@@ -30,4 +30,10 @@ public class StringUtilTest {
     void  testForEmptyString() {
     	Assertions.assertEquals(0, StringUtil.stringCalculator(""));
     }
+    
+    
+    @Test
+    void  testForMultipleString() {
+    	Assertions.assertEquals(3, StringUtil.stringCalculator("1,2"));
+    }
 }
