@@ -14,7 +14,7 @@ public class StringUtilTest {
 	
 	@ParameterizedTest
     @MethodSource("validateSimpleStrings")
-    void limitReached_stringCalcutor(String input, Integer output) {
+    void basic_stringCalcutor(String input, Integer output) {
         Assertions.assertEquals(output, StringUtil.stringCalculator(input));
     }
 
@@ -32,8 +32,18 @@ public class StringUtilTest {
     }
     
     
-    @Test
-    void  testForMultipleString() {
-    	Assertions.assertEquals(3, StringUtil.stringCalculator("1,2"));
+    @ParameterizedTest
+    @MethodSource("validateMultipleStrings")
+    void validate_MultipleString(String input, Integer output) {
+        Assertions.assertEquals(output, StringUtil.stringCalculator(input));
     }
+
+    static Stream<Arguments> validateMultipleStrings() {
+        return Stream.of(
+                Arguments.of("1,2,3", 6),
+                Arguments.of("2,4,8", 14)
+        );
+    }
+    
+    
 }
