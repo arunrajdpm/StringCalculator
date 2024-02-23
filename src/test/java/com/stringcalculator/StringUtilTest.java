@@ -85,10 +85,19 @@ public class StringUtilTest {
     }
     
     
-    @Test
-    void validate_CustomDelimiter() {
-    	 Assertions.assertEquals(3, StringUtil.stringCalculator("//;\n1;2" ));
+    @MethodSource("validateCustomDelimiterStrings")
+    void validate_CustomDelimiterString(String input, Integer output) {
+        Assertions.assertEquals(output, StringUtil.stringCalculator(input));
+    }
+
+    static Stream<Arguments> validateCustomDelimiterStrings() {
+        return Stream.of(
+                Arguments.of("//;\\n1;2", 3),
+                Arguments.of("//&\\n1&2", 3),
+                Arguments.of("//;\\n1;2;4", 7)
+        );
     }
     
+  
     
 }
