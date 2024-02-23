@@ -85,5 +85,10 @@ public class StringUtilTest {
     }
     
     
+    @Test
+    void validate_CustomDelimiter() {
+    	 Assertions.assertEquals(3, StringUtil.stringCalculator("//;\n1;2" ));
+    }
+    
     
 }
