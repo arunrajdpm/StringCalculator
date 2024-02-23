@@ -1,6 +1,7 @@
 package com.stringcalculator;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class StringUtil {
 	
@@ -12,10 +13,22 @@ public class StringUtil {
 		
 		String[] numsAsString = input.split(",");
 		
+		
+		String negativeNumbers = Arrays
+        	.stream(numsAsString)
+        	.mapToInt(Integer::parseInt)
+        	.filter(num -> num < 0)
+        	.mapToObj(String::valueOf)
+            .collect(Collectors.joining(","));
+		
+		if(!negativeNumbers.isEmpty())
+			throw new RuntimeException("negative numbers not allowed " + negativeNumbers);
+		
+		
         return  Arrays
-    	        .stream(numsAsString)
-    	        .mapToInt(Integer::parseInt)
-    	        .sum();
+	    	        .stream(numsAsString)
+	    	        .mapToInt(Integer::parseInt)
+	    	        .sum();
     }
 
 }

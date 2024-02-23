@@ -48,16 +48,29 @@ public class StringUtilTest {
         );
     }
     
-   
-    @Test
-    public void throwExceptionOnNegativeNum() {
+    
+    @ParameterizedTest
+    @MethodSource("validateNegativeStrings")
+    void validate_NegativeString(String input, String output) {
     	RuntimeException thrown = assertThrows(
     			RuntimeException.class,
-    	           () -> StringUtil.stringCalculator("-1"),
-    	           "negative numbers not allowed -1"
+    	           () -> StringUtil.stringCalculator(input),
+    	           output
     	    );
 
-    	assertTrue(thrown.getMessage().contains("negative numbers not allowed -1"));
+    	assertTrue(thrown.getMessage().contains(output));
     }
+
+    static Stream<Arguments> validateNegativeStrings() {
+        return Stream.of(
+                Arguments.of("-1", "negative numbers not allowed -1"),
+                Arguments.of("-1,-2,-3", "negative numbers not allowed -1,-2,-3"),
+                Arguments.of("-1,2,-3", "negative numbers not allowed -1,-3")
+               
+        );
+    }
+    
+   
+    
     
 }
